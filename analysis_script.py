@@ -2,15 +2,19 @@ import pandas as pd
 
 # 1. Loading the dataset
 # This is the first step where I bring the CSV file into Python
-df = pd.read_csv('customer_shopping_behavior.csv')
+df = pd.read_csv(r'C:\Users\dell\Desktop\customer_shopping_behavior.csv')
 
 # 2. Understanding the data
-# I use .info() to check for missing values and data types
+# I use .info() to check for data types
 print(df.info())
+
+# 2.1 Checking for missing values
+# This prints the count of null values; it will show 37 for Review Rating
+print(df.isnull().sum())
 
 # 3. Data Cleaning
 # Filling 37 missing ratings using the median of each category
-df['review_rating'] = df.groupby('category')['review_rating'].transform(lambda x: x.fillna(x.median()))
+df['Review Rating'] = df.groupby('Category')['Review Rating'].transform(lambda x: x.fillna(x.median()))
 
 # 4. Standardizing column names
 # Converting everything to lowercase with underscores (Snake Case)
@@ -33,3 +37,7 @@ df.drop(columns=['promo_code_used'], inplace=True)
 # 8. Final Preview
 # Viewing the first 5 rows to confirm all changes are correct
 print(df.head())
+
+# 9. Exporting the cleaned data for Power BI dashboarding
+df.to_csv(r'C:\Users\dell\Desktop\cleaned_customer_data.csv', index=False)
+
