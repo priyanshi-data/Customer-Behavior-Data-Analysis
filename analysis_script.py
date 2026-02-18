@@ -38,6 +38,7 @@ df.drop(columns=['promo_code_used'], inplace=True)
 # Viewing the first 5 rows to confirm all changes are correct
 print(df.head())
 
-# 9. Exporting the cleaned data for Power BI dashboarding
+# 9. Exporting the cleaned data for the visualization script
+# This file will be used by 'visualizations.py' to generate our analytical charts
 df.to_csv(r'C:\Users\dell\Desktop\cleaned_customer_data.csv', index=False)
 
